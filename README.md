@@ -4,4 +4,4 @@ Demography = Projet en python pour estimer le lien entre deux séries observées
 
 Dowels = Effectuez des ajustements statistiques à l'aide de la distribution binomiale. Application de test Khi²
 
-Intelligence_Quotient = estimer la probabilité qu'une varable aléatoire d'une distribution normale standard soit incluse dans un intervalle donné.
+Intelligence_Quotient = Estimer la probabilité qu'une varable aléatoire d'une distribution normale standard soit incluse dans un intervalle donné.
