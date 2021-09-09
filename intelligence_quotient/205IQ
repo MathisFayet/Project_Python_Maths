@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+
+from sys import argv
+from argparse import ArgumentParser, ArgumentTypeError
+from typing import List
+
+from src.start_project import init_program
+
+def int_greater_200(value: str) -> int:
+    try:
+        result: int = int(value)
+    except ValueError:
+        raise ArgumentTypeError(f"{value} ins't a integer")
+    if (result < 0 or result > 200):
+        raise ArgumentTypeError(f"{value} isn't a integer greater than 50")
+    return (result)
+
+
+def check_argument(argument: List[str]) -> None:
+    if len(argument) > 2 and len(argument) < 5:
+        argument.insert(0, "--more")
+    elif len(argument) == 2:
+        argument.insert(0, "--simple")
+    else:
+        print("Veuillez mettre au moins 2 arguments -> ./205IQ -h ")
+        exit(84)
+
+# ---------------------------------------- Function main for start project -------------------------------------------------------------------------
+def main() -> None:
+    argument: List[str] = argv[1:]
+
+    parse = ArgumentParser()
+
+    parse.add_argument(
+        "--simple", type=int_greater_200, nargs=2, help="mean"
+    )
+    parse.add_argument(
+        "--more", type=int_greater_200,  nargs='*', help="standard deviation"
+    )
+
+    check_argument(argument) # Check mes arguments si > 2 ou < 5
+
+    try:
+        args = parse.parse_args(argument)
+    except SystemExit:
+        exit (84)
+    init_program(args) # Start mon projet avec mes arguments
+
+# -------------------------------------- Special __name__ variable -------------------------------------------------------------------------------
+if __name__ == "__main__":
+    main()

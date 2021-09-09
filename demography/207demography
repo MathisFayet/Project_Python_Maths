@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+from sys import argv
+from argparse import ArgumentParser, ArgumentTypeError
+from csv import reader
+from math import pow, sqrt
+from typing import List
+
+from src.allDemography import allDemography
+
+def main() -> None:
+    args: List[str] = argv[1:]
+    argsParse = ArgumentParser()
+    argsParse.add_argument("--code", nargs='*', type=str)
+
+    if (len(args) != 0):
+        args.insert(0, "--code")
+    else:
+        exit(84)
+
+    try:
+        arguments = argsParse.parse_args(args)
+    except SystemExit: # Error type
+        exit(84)
+
+    if (len(args) == 2 or len(args) == 4):
+        allDemography(arguments.code)
+    else:
+        exit(84)
+
+if __name__ == "__main__":
+    main()
